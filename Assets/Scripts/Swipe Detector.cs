@@ -29,6 +29,7 @@ public class SwipeDetector : MonoBehaviour
             Ray mouseClick = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(mouseClick, out hit))
             {
+                Debug.Log(hit.collider.tag);
                 if (hit.collider.CompareTag("Dino"))
                 {
                     startPosition = Input.mousePosition;
