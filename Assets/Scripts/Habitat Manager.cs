@@ -11,6 +11,7 @@ public class HabitatManager : MonoBehaviour
     //Temporary part
     [SerializeField] ClickManager _script1;
     [SerializeField] IdleIncomeManager _script2;
+    [SerializeField] Overdose _script3;
     public int i = 0;
     private List<HabitatData> _habitatList;
     private List<object> _scriptList;
@@ -19,7 +20,7 @@ public class HabitatManager : MonoBehaviour
     private void Awake()
     {
         _habitatList = new List<HabitatData> { _habitat1, _habitat2, _habitat3 };
-        _scriptList = new List<object> { _script1, _script2 };
+        _scriptList = new List<object> { _script1, _script2, _script3 };
 
         foreach (var script in _scriptList)
         {

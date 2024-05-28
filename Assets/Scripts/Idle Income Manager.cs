@@ -7,6 +7,7 @@ public class IdleIncomeManager : MonoBehaviour, IScriptableObjectReceiver
     private float IncomeInterval;
     [SerializeField] private PlayerData _playerData;
     public HabitatData habitatData;
+    public UpgradeData upgradeData;
 
     public void SetScriptableObject(HabitatData habitatD)
     {
@@ -29,7 +30,7 @@ public class IdleIncomeManager : MonoBehaviour, IScriptableObjectReceiver
         while (true)
         {
             yield return new WaitForSeconds(IncomeInterval);
-            _playerData.Money += habitatData.idleIncome;
+            _playerData.Money +=(int) (habitatData.idleIncome * upgradeData.incomeMultiplier);
 
         }
     }

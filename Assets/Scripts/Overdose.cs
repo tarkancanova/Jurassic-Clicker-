@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-public class Overdose : MonoBehaviour
+public class Overdose : MonoBehaviour, IScriptableObjectReceiver
 {
     [SerializeField] private Image _overdoseBarFill;
     [SerializeField] public float overdoseAmount {  get; private set; }
@@ -15,6 +15,8 @@ public class Overdose : MonoBehaviour
     [SerializeField] private float _decreaseInterval;
     public GameObject parentObject;
     public float percentage = 30f; // Desired percentage
+    public HabitatData habitatData;
+    public UpgradeData upgradeData;
 
 
     List<GameObject> GetPercentageOfActiveChildren(GameObject parent, float percentage)
@@ -44,7 +46,7 @@ public class Overdose : MonoBehaviour
     {
         StartCoroutine(DecraseOverTime());
         overdoseAmount = 0;
-        _maxOverdoseAmount = 100;
+        _maxOverdoseAmount = habitatData.stamina * upgradeData.staminaMultiplier;
         _decreaseInterval = 5;
     }
 
@@ -52,14 +54,17 @@ public class Overdose : MonoBehaviour
     private void Update()
     {
         UpdateOverdoseBar();
+
+        Debug.Log(_maxOverdoseAmount);
+
     }
 
     public void UpdateOverdose(float amount)
     {
-        if (amount < 100) 
+        if (amount < _maxOverdoseAmount) 
         { 
             overdoseAmount += amount;
-            if (overdoseAmount > 99)
+            if (overdoseAmount >= _maxOverdoseAmount)
             {
                 OverdoseEffect();
             }
@@ -68,6 +73,11 @@ public class Overdose : MonoBehaviour
         {
             return;
         }
+    }
+
+    public void UpdateMaxOverdoseAmount()
+    {
+        _maxOverdoseAmount = habitatData.stamina * upgradeData.staminaMultiplier;
     }
 
 
@@ -83,7 +93,7 @@ public class Overdose : MonoBehaviour
             yield return new WaitForSeconds(_decreaseInterval);
             if (overdoseAmount > 0)
             {
-                overdoseAmount -= 5;
+                overdoseAmount -= _maxOverdoseAmount/20;
             }
         }
     }
@@ -96,5 +106,10 @@ public class Overdose : MonoBehaviour
         {
             child.GetComponent<Customer>().Escape();
         }
+    }
+
+    public void SetScriptableObject(HabitatData habitatD)
+    {
+        habitatData = habitatD;
     }
 }
