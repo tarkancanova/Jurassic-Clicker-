@@ -10,4 +10,10 @@ public class HabitatData : ScriptableObject
     public int clickIncome;
     public float stamina;
     public int id;
+    public GameObject dinosParentObject;
+
+    public void AssignDinosParentObject(GameObject gameObject)
+    {
+        dinosParentObject = gameObject;
+    }
 }

@@ -17,3 +17,4 @@ MonoBehaviour:
   clickIncome: 1
   stamina: 50
   id: 123
+  dinosParentObject: {fileID: 0}

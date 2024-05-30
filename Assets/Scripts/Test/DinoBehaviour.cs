@@ -26,7 +26,7 @@ public class DinoBehaviour : MonoBehaviour
     }
 
 
-    private void Start()
+    private void OnEnable()
     {
         behaviourChangeCooldown = 5;
         InvokeRepeating(nameof(BehaviourDecider), 0f, behaviourChangeCooldown);

@@ -33,9 +33,16 @@ public class HabitatManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        //DisableDinos();
+        //ActivateSelectedLevelDino();
+    }
+
     private void Update()
     {
         HabitatTextUpdate();
+
     }
 
     public void NextScriptableObject()
@@ -79,5 +86,16 @@ public class HabitatManager : MonoBehaviour
     private void HabitatTextUpdate()
     {
         _habitatText.text = "Current level: " + _habitatList[i].level;
+    }
+
+    public void DisableDinos()
+    {
+        foreach(HabitatData data in _habitatList)
+            data.dinosParentObject.SetActive(false);
+    }
+
+    public void ActivateSelectedLevelDino()
+    {
+        _habitatList[i].dinosParentObject.SetActive(true);
     }
 }
