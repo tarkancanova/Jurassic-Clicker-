@@ -35,8 +35,8 @@ public class HabitatManager : MonoBehaviour
 
     private void Start()
     {
-        //DisableDinos();
-        //ActivateSelectedLevelDino();
+        DisableDinos();
+        ActivateSelectedLevelDino();
     }
 
     private void Update()

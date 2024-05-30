@@ -15,7 +15,6 @@ public class HabitatDataAssigner : MonoBehaviour
 
     void Awake()
     {
-        // Ensure the arrays are the same length to avoid index out of bounds errors
         if (habitatDataList.Length != dinosParentObjectList.Length)
         {
             Debug.LogError("HabitatDataList and DinosParentObjectList must have the same length");
