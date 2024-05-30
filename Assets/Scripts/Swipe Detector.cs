@@ -7,7 +7,7 @@ public class SwipeDetector : MonoBehaviour
     private bool isSwiping = false;
     public float minSwipeDistance = 50f;
     [SerializeField] private Overdose _overdose;
-    public float maxReductionFactor = 1f;
+    public float maxReductionFactor = 5f;
 
     void Update()
     {
@@ -29,6 +29,7 @@ public class SwipeDetector : MonoBehaviour
             Ray mouseClick = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(mouseClick, out hit))
             {
+                Debug.Log("Hit Object: " + hit.collider.gameObject.name);
                 Debug.Log(hit.collider.tag);
                 if (hit.collider.CompareTag("Dino"))
                 {

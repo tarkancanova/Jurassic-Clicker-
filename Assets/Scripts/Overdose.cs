@@ -11,7 +11,7 @@ public class Overdose : MonoBehaviour, IScriptableObjectReceiver
 {
     [SerializeField] private Image _overdoseBarFill;
     [SerializeField] public float overdoseAmount {  get; private set; }
-    private float _maxOverdoseAmount;
+    public float _maxOverdoseAmount;
     [SerializeField] private float _decreaseInterval;
     public GameObject parentObject;
     public float percentage = 30f; // Desired percentage
@@ -54,8 +54,6 @@ public class Overdose : MonoBehaviour, IScriptableObjectReceiver
     private void Update()
     {
         UpdateOverdoseBar();
-
-        Debug.Log(_maxOverdoseAmount);
 
     }
 

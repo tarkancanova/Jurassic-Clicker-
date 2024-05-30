@@ -15,5 +15,5 @@ MonoBehaviour:
   level: 3
   idleIncome: 3
   clickIncome: 3
-  stamina: 15
+  stamina: 200
   id: 345

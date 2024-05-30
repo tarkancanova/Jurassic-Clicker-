@@ -9,7 +9,7 @@ public class ClickManager : MonoBehaviour, IScriptableObjectReceiver
     [SerializeField] private PlayerData _playerData;
     public HabitatData habitatData;
     [SerializeField] private Overdose _overdose;
-    [SerializeField] private GameObject _startPoint;
+    [SerializeField] private GameObject _startPoints;
     public UpgradeData upgradeData;
 
 
@@ -19,14 +19,14 @@ public class ClickManager : MonoBehaviour, IScriptableObjectReceiver
 
     public void OnClick()
     {
-        if (_overdose.overdoseAmount < 100)
+        if (_overdose.overdoseAmount < _overdose._maxOverdoseAmount)
         {
             _playerData.Money +=(int) (habitatData.clickIncome * upgradeData.incomeMultiplier);
             _overdose.UpdateOverdose(5f);
             GameObject customer = ObjectPool.SharedInstance.GetPooledObject();
             if (customer != null)
             {
-                customer.transform.position = _startPoint.transform.position;
+                customer.transform.position = _startPoints.transform.GetChild(habitatData.level - 1).transform.position;
                 customer.SetActive(true);
             }
         }

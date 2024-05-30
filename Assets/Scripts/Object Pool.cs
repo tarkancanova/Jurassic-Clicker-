@@ -35,4 +35,12 @@ public class ObjectPool : MonoBehaviour
         }
         return null;
     }
+
+    public void DisableAllCustomers()
+    {
+        foreach (GameObject gameObject in pooledCustomers)
+        {
+            gameObject.SetActive(false);
+        }
+    }
 }

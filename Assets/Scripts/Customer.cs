@@ -4,13 +4,14 @@ using UnityEngine.AI;
 using System.Linq;
 
 
-public class Customer : MonoBehaviour
+public class Customer : MonoBehaviour, IScriptableObjectReceiver
 {
     private NavMeshAgent _navMeshAgent;
-    public GameObject targetArea;
+    public GameObject targetAreaList;
     [SerializeField] private GameObject _escapePoint;
+    public HabitatData habitatData;
 
-    private void Start()
+    private void Awake()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
     }
@@ -28,7 +29,7 @@ public class Customer : MonoBehaviour
     private void NavigateToArea()
     {
             // Assuming the targetArea is a GameObject with a Collider
-            Collider areaCollider = targetArea.GetComponent<Collider>();
+            Collider areaCollider = targetAreaList.transform.GetChild(habitatData.level - 1).gameObject.GetComponent<Collider>();
 
             if (areaCollider != null)
             {
@@ -60,6 +61,11 @@ public class Customer : MonoBehaviour
     public void Escape()
     {
         _navMeshAgent.destination = _escapePoint.transform.position;
+    }
+
+    public void SetScriptableObject(HabitatData habitatD)
+    {
+        habitatData = habitatD;
     }
 }
 

@@ -5,22 +5,24 @@ using UnityEngine;
 
 public class HabitatManager : MonoBehaviour
 {
-    [SerializeField] HabitatData _habitat1;
-    [SerializeField] HabitatData _habitat2;
-    [SerializeField] HabitatData _habitat3;
     //Temporary part
-    [SerializeField] ClickManager _script1;
-    [SerializeField] IdleIncomeManager _script2;
-    [SerializeField] Overdose _script3;
+    [SerializeField] public ClickManager script1;
+    [SerializeField] public IdleIncomeManager script2;
+    [SerializeField] public Overdose script3;
+    [SerializeField] public Customer[] customerScriptList;
     public int i = 0;
-    private List<HabitatData> _habitatList;
+    [SerializeField] private List<HabitatData> _habitatList;
     private List<object> _scriptList;
     [SerializeField] private TMPro.TMP_Text _habitatText;
 
     private void Awake()
     {
-        _habitatList = new List<HabitatData> { _habitat1, _habitat2, _habitat3 };
-        _scriptList = new List<object> { _script1, _script2, _script3 };
+        _scriptList = new List<object> { script1, script2, script3 };
+
+        foreach (var item in customerScriptList)
+        {
+            _scriptList.Add(item);
+        }
 
         foreach (var script in _scriptList)
         {
